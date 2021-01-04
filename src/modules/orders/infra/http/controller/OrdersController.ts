@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 import { Request, Response } from 'express';
 
 import { container } from 'tsyringe';
@@ -7,7 +8,7 @@ import FindOrderService from '@modules/orders/services/FindOrderService';
 
 export default class OrdersController {
   public async show(request: Request, response: Response): Promise<Response> {
-    const { id } = request.body;
+    const id = request.params.id;
 
     const findOrder = await container.resolve(FindOrderService);
 

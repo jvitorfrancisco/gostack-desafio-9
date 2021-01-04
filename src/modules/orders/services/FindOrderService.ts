@@ -5,10 +5,6 @@ import ICustomersRepository from '@modules/customers/repositories/ICustomersRepo
 import Order from '../infra/typeorm/entities/Order';
 import IOrdersRepository from '../repositories/IOrdersRepository';
 
-interface IRequest {
-  id: string;
-}
-
 @injectable()
 class FindOrderService {
   constructor(
@@ -20,7 +16,7 @@ class FindOrderService {
     private customersRepository: ICustomersRepository,
   ) {}
 
-  public async execute({ id }: IRequest): Promise<Order | undefined> {
+  public async execute(id: string): Promise<Order | undefined> {
     const order = await this.ordersRepository.findById(id);
 
     return order;
